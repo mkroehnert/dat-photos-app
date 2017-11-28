@@ -61,14 +61,37 @@ h1 {
   object-fit: cover;
 }
 
-.album-images .img-container:hover {
-  transform: scale(.95);
+.album-images .img-container.selected {
+  border: 4px solid #009688;
+  transform: scale(.93);
 }
 
-.album-images .img-container.selected {
-  border: 10px solid #009688;
-  transform: scale(.95);
+.album-images .img-container .dropdown-btn {
+  opacity: 0;
+  position: absolute;
+  z-index: 3;
+  top: 5px;
+  right: 5px;
+  width: 22px;
+  height: 21px;
+  background: rgba(255,255,255,.7);
+  text-align: center;
+  font-size: 25px;
+  color: rgba(0,0,0,.7);
+  border: 1px solid rgba(0,0,0,.075);
+  border-radius: 3px;
+  line-height: 15px;
+  vertical-align: middle;
 }
+
+.album-images .img-container:hover .dropdown-btn {
+  opacity: 1;
+}
+
+.album-images .img-container:hover .dropdown-btn:hover {
+  color: #000;
+}
+
 
 input[type="file"] {
   position: absolute;

@@ -59,16 +59,29 @@
   }
 
   function onToggleSelected (e) {
-    e.target.parentNode.classList.toggle('selected')
+    e.stopPropagation()
+
+    const imgContainer = e.target.parentNode
+
+    imgContainer.classList.toggle('selected')
+
+    const img = imgContainer.querySelector('img')
 
     // full src is dat://{key}/{path}, so strip dat://{key}
     const datHashLength = 64
-    const path = e.target.src.slice('dat://'.length + datHashLength)
+    const path = img.src.slice('dat://'.length + datHashLength)
     const idx = selectedImages.indexOf(path)
 
+    const selectImageBtn = imgContainer.querySelector('span.dropdown-btn')
+
     // either add or remove the path to selectedImages
-    if (idx === -1) selectedImages.push(path)
-    else selectedImages.splice(idx, 1)
+    if (idx === -1) {
+      selectedImages.push(path)
+      selectImageBtn.innerHTML = '&#9746;'
+    } else {
+      selectedImages.splice(idx, 1)
+      selectImageBtn.innerHTML = '&#9744;'
+    }
   }
 
   async function onDeleteSelected () {
@@ -189,15 +202,29 @@
   function appendImage (src, orientation = 1) {
     if (typeof src !== 'string') return
 
+    const srcURI = encodeURI(src)
+
     const el = document.createElement('div')
     el.classList.add('img-container')
 
-    const img = document.createElement('img')
-    img.src = encodeURI(src)
-    img.style.transform = IMAGE_ROTATION[orientation]
-    img.addEventListener('click', onToggleSelected)
+    const imgRef = document.createElement('a')
+    imgRef.href = srcURI
+    el.appendChild(imgRef)
 
-    el.appendChild(img)
+    const img = document.createElement('img')
+    img.src = srcURI
+    img.style.transform = IMAGE_ROTATION[orientation]
+
+    imgRef.appendChild(img)
+
+    const selectImageBtn = document.createElement('span')
+    selectImageBtn.classList.add('dropdown-btn')
+    selectImageBtn.title = 'Select image'
+    selectImageBtn.innerHTML = '&#9744;'
+    selectImageBtn.addEventListener('click', onToggleSelected, true)
+
+    el.appendChild(selectImageBtn)
+
     document.querySelector('.album-images').appendChild(el)
   }
 
