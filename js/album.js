@@ -72,7 +72,7 @@
     const path = img.src.slice('dat://'.length + datHashLength)
     const idx = selectedImages.indexOf(path)
 
-    const selectImageBtn = imgContainer.querySelector('span.dropdown-btn')
+    const selectImageBtn = imgContainer.querySelector('span.select-btn')
 
     // either add or remove the path to selectedImages
     if (idx === -1) {
@@ -218,7 +218,7 @@
     imgRef.appendChild(img)
 
     const selectImageBtn = document.createElement('span')
-    selectImageBtn.classList.add('dropdown-btn')
+    selectImageBtn.classList.add('select-btn')
     selectImageBtn.title = 'Select image'
     selectImageBtn.innerHTML = '&#9744;'
     selectImageBtn.addEventListener('click', onToggleSelected, true)

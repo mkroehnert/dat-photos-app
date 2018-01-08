@@ -62,11 +62,11 @@ h1 {
 }
 
 .album-images .img-container.selected {
-  border: 4px solid #009688;
-  transform: scale(.93);
+  border: 10px solid #009688;
+  transform: scale(.95);
 }
 
-.album-images .img-container .dropdown-btn {
+.album-images .img-container .select-btn {
   opacity: 0;
   position: absolute;
   z-index: 3;
@@ -84,11 +84,11 @@ h1 {
   vertical-align: middle;
 }
 
-.album-images .img-container:hover .dropdown-btn {
+.album-images .img-container:hover .select-btn {
   opacity: 1;
 }
 
-.album-images .img-container:hover .dropdown-btn:hover {
+.album-images .img-container:hover .select-btn:hover {
   color: #000;
 }
 
