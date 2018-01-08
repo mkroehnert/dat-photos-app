@@ -74,13 +74,15 @@
 
     const selectImageBtn = imgContainer.querySelector('span.select-btn')
 
+    selectImageBtn.classList.toggle('selected')
+
     // either add or remove the path to selectedImages
     if (idx === -1) {
+      // image selected
       selectedImages.push(path)
-      selectImageBtn.innerHTML = '&#9746;'
     } else {
+      // image deselected
       selectedImages.splice(idx, 1)
-      selectImageBtn.innerHTML = '&#9744;'
     }
   }
 
@@ -220,7 +222,7 @@
     const selectImageBtn = document.createElement('span')
     selectImageBtn.classList.add('select-btn')
     selectImageBtn.title = 'Select image'
-    selectImageBtn.innerHTML = '&#9744;'
+    selectImageBtn.innerHTML = '&#10003;'
     selectImageBtn.addEventListener('click', onToggleSelected, true)
 
     el.appendChild(selectImageBtn)
